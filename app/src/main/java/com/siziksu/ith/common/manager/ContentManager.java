@@ -1,4 +1,4 @@
-package com.siziksu.ith.ui.manager;
+package com.siziksu.ith.common.manager;
 
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -15,15 +15,16 @@ public final class ContentManager {
         manager = fragmentManager;
     }
 
-    public void show(@IdRes int view, Fragment fragment, String tag, boolean value) {
+    public void show(@IdRes int view, Fragment fragment, String tag) {
         if (!section.equals(tag)) {
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.replace(view, fragment, tag);
-            if (value) {
-                transaction.addToBackStack(null);
-            }
             transaction.commit();
             section = tag;
         }
+    }
+
+    public String getSection() {
+        return section;
     }
 }

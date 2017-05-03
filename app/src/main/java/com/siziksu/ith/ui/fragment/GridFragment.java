@@ -3,6 +3,7 @@ package com.siziksu.ith.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -12,15 +13,15 @@ import android.view.ViewGroup;
 
 import com.siziksu.ith.R;
 import com.siziksu.ith.common.helper.IthCallback;
-import com.siziksu.ith.ui.adapter.MainAdapter;
-import com.siziksu.ith.ui.manager.ToolbarManager;
+import com.siziksu.ith.ui.main.MainAdapter;
+import com.siziksu.ith.common.manager.ToolbarManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class GridFragment extends Fragment {
+public final class GridFragment extends Fragment {
 
-    @BindView(R.id.mainList)
+    @BindView(R.id.main_list)
     RecyclerView mainList;
 
     private ItemTouchHelper itemTouchHelper;
@@ -38,7 +39,7 @@ public class GridFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        new ToolbarManager(getActivity()).set(true, false);
+        ToolbarManager.initActionBar(((AppCompatActivity) getActivity()).getSupportActionBar(), true, false);
         final int spanCount = getResources().getInteger(R.integer.grid_columns);
         final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), spanCount);
         final MainAdapter adapter = new MainAdapter(getActivity(), viewHolder -> itemTouchHelper.startDrag(viewHolder));

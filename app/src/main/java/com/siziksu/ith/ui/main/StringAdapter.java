@@ -1,4 +1,4 @@
-package com.siziksu.ith.ui.adapter;
+package com.siziksu.ith.ui.main;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +12,9 @@ import com.siziksu.ith.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public final class StringAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -51,16 +54,17 @@ public final class StringAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
     }
 
-    private final class LocalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    final class LocalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        View itemRow;
+        @BindView(R.id.list_string_item_view)
+        View itemView;
+        @BindView(R.id.list_string_item_text)
         TextView itemText;
 
         LocalViewHolder(View view) {
             super(view);
-            itemRow = view.findViewById(R.id.listStringItemRow);
-            itemText = (TextView) view.findViewById(R.id.listStringItemText);
-            itemRow.setOnClickListener(this);
+            ButterKnife.bind(this, view);
+            itemView.setOnClickListener(this);
         }
 
         @Override

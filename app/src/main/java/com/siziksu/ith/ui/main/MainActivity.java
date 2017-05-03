@@ -1,4 +1,4 @@
-package com.siziksu.ith.ui.activity;
+package com.siziksu.ith.ui.main;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,24 +6,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.siziksu.ith.R;
-import com.siziksu.ith.ui.fragment.GridFragment;
-import com.siziksu.ith.ui.fragment.ListFragment;
+import com.siziksu.ith.common.Constants;
+import com.siziksu.ith.common.manager.ContentManager;
 import com.siziksu.ith.ui.fragment.MainFragment;
-import com.siziksu.ith.ui.manager.ContentManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements IMainActivity {
+public final class MainActivity extends AppCompatActivity implements IMainActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
-    private static final int LIST = 0;
-    private static final int GRID = 1;
-    private static final String FRAGMENT_MAIN = "main";
-    private static final String FRAGMENT_LIST = "list";
-    private static final String FRAGMENT_GRID = "grid";
 
     private ContentManager contentManager;
 
@@ -35,20 +28,25 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         setSupportActionBar(toolbar);
         contentManager = new ContentManager(getSupportFragmentManager());
         if (savedInstanceState == null) {
-            contentManager.show(R.id.mainContent, new MainFragment(), FRAGMENT_MAIN, false);
+            contentManager.show(R.id.main_content, new MainFragment(), Constants.FRAGMENT_MAIN);
         }
     }
 
     @Override
-    public void onItemClick(int position) {
-        switch (position) {
-            case LIST:
-                contentManager.show(R.id.mainContent, new ListFragment(), FRAGMENT_LIST, true);
+    public void onBackPressed() {
+        switch (contentManager.getSection()) {
+            case Constants.FRAGMENT_MAIN:
+                super.onBackPressed();
                 break;
-            case GRID:
-                contentManager.show(R.id.mainContent, new GridFragment(), FRAGMENT_GRID, true);
+            default:
+                contentManager.show(R.id.main_content, new MainFragment(), Constants.FRAGMENT_MAIN);
                 break;
         }
+    }
+
+    @Override
+    public ContentManager getContentManager() {
+        return contentManager;
     }
 
     @Override

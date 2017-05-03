@@ -9,7 +9,7 @@
     android:focusable="true">
 
     <TextView
-        android:id="@+id/itemText"
+        android:id="@+id/item_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -18,7 +18,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ImageView
-        android:id="@+id/itemHandler"
+        android:id="@+id/item_handler"
         android:layout_width="?listPreferredItemHeight"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical|end"

@@ -1,4 +1,4 @@
-package com.siziksu.ith.ui.adapter;
+package com.siziksu.ith.ui.main;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -24,7 +24,7 @@ import java.util.List;
  * Simple RecyclerView.Adapter that implements {@link IthAdapter} to respond to move and
  * dismiss events from a {@link android.support.v7.widget.helper.ItemTouchHelper}.
  */
-public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements IthAdapter {
+public final class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements IthAdapter {
 
     private final List<String> items;
     private final Context context;
@@ -80,8 +80,8 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
 
         ItemViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.itemText);
-            handleView = (ImageView) itemView.findViewById(R.id.itemHandler);
+            textView = (TextView) itemView.findViewById(R.id.item_text);
+            handleView = (ImageView) itemView.findViewById(R.id.item_handler);
         }
 
         @Override
